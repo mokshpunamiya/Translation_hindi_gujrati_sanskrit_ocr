@@ -1,0 +1,15 @@
+[Unit]
+Description=PDF OCR Application
+After=network.target mysql.service
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/pdf_ocr
+Environment="PATH=/var/www/pdf_ocr/venv/bin"
+Environment="FLASK_CONFIG=production"
+ExecStart=/var/www/pdf_ocr/venv/bin/gunicorn --workers 4 --bind 127.0.0.1:8000 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics - PDF OCR & Translation{% endblock %}
+
+{% block content %}
+<div class="stats-container">
+    <h1 style="margin-bottom: 2rem;">Usage Statistics</h1>
+    
+    <div class="file-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 4rem;">
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+             <div style="font-size: 3rem; font-weight: 800; color: var(--primary-color);">{{ stats.total }}</div>
+             <div style="color: var(--text-secondary); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Total Documents</div>
+        </div>
+    </div>
+
+    <div class="card" style="padding: 2.5rem;">
+        <h2 style="margin-bottom: 1.5rem;">Daily Uploads</h2>
+        <div class="stats-table-wrapper" style="overflow-x: auto;">
+             <table style="width: 100%; border-collapse: collapse; color: var(--text-primary);">
+                 <thead>
+                     <tr style="border-bottom: 1px solid var(--border-color); text-align: left;">
+                         <th style="padding: 1rem; color: var(--text-secondary);">Date</th>
+                         <th style="padding: 1rem; color: var(--text-secondary);">Documents Processed</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     {% if stats.daily_stats %}
+                        {% for stat in stats.daily_stats %}
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 1rem;">{{ stat.date.strftime('%Y-%m-%d') if stat.date else 'N/A' }}</td>
+                            <td style="padding: 1rem;">{{ stat.count }}</td>
+                        </tr>
+                        {% endfor %}
+                     {% else %}
+                        <tr>
+                            <td colspan="2" style="padding: 2rem; text-align: center; color: var(--text-secondary);">No data available</td>
+                        </tr>
+                     {% endif %}
+                 </tbody>
+             </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 10rem 2rem; background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border-color);">
+    <h1 style="font-size: 6rem; font-weight: 900; margin-bottom: 1rem; color: var(--primary-color);">404</h1>
+    <h2 style="font-size: 2rem; margin-bottom: 2rem;">Page Not Found</h2>
+    <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 3rem;">Oops! It looks like you've wandered into uncharted territory. The page you're looking for doesn't exist.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary" style="padding: 1rem 2rem; border-radius: 12px; font-size: 1.125rem;">Back to Safety</a>
+</div>
+{% endblock %}
